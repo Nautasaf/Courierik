@@ -1,23 +1,21 @@
-import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import styles from './App.module.scss'; 
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/Index';
-import { login, logout } from '../store/slice/AuthSlice'; 
-
-
+import React, { useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import styles from "./App.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/Index";
+import { login, logout } from "../store/slice/AuthSlice";
+import { About } from "../components/About";
 
 function App() {
-  const{ isLoggedIn  } = useSelector((state: RootState) => state.Auth);
-  const dispatch = useDispatch(); 
+  const { isLoggedIn } = useSelector((state: RootState) => state.Auth);
+  const dispatch = useDispatch();
   const handleLogin = () => {
-    
-    const user = { name: 'John Doe', email: 'john@example.com' };
-    dispatch(login(user)); 
+    const user = { name: "John Doe", email: "john@example.com" };
+    dispatch(login(user));
   };
 
   const handleLogout = () => {
-    dispatch(logout()); 
+    dispatch(logout());
   };
   return (
     <div className={styles.appContainer}>
@@ -27,20 +25,31 @@ function App() {
             <NavLink
               to="/"
               end
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
               Главная
             </NavLink>
             <NavLink
               to="/profile"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
               Профиль
             </NavLink>
             <NavLink
+              to="/about"
+              end
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
+              О нас
+            </NavLink>
+            <NavLink
               to="/orders"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
               Заказы
             </NavLink>
             <button onClick={handleLogout} className={styles.navLink}>
@@ -52,20 +61,31 @@ function App() {
             <NavLink
               to="/"
               end
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
               Главная
             </NavLink>
             <NavLink
               to="/registration"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
               Регистрация
             </NavLink>
             <NavLink
+              to="/about"
+              end
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
+              О нас
+            </NavLink>
+            <NavLink
               to="/login"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }>
               Логин
             </NavLink>
           </>
@@ -91,6 +111,3 @@ function App() {
 }
 
 export default App;
-
-
-
