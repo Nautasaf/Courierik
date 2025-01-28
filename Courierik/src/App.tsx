@@ -3,27 +3,34 @@ import { NavLink, Outlet } from 'react-router-dom';
 import styles from './App.module.scss'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/Index';
-import { login, logout } from '../store/slice/AuthSlice'; 
-
+import {  logout } from '../store/slice/AuthSlice'; 
+import ThemeToggle from '../components/ToggleTheme'; 
+import { WeatherComponent } from '../components/Wather';
 
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const{ isLoggedIn  } = useSelector((state: RootState) => state.Auth);
   const dispatch = useDispatch(); 
-  const handleLogin = () => {
-    
-    const user = { name: 'John Doe', email: 'john@example.com' };
-    dispatch(login(user)); 
-  };
-
+  
+  console.log("isLoggedIn ",isLoggedIn);
+  
   const handleLogout = () => {
-    dispatch(logout()); 
+    dispatch(logout());
   };
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+ 
+
   return (
-    <div className={styles.appContainer}>
+    <div className={`${styles.appContainer} ${isDarkMode ? styles.darkMode : styles.lightMode}`}>
+      
       <nav className={styles.navMenu}>
+      <ThemeToggle toggleTheme={toggleTheme} />
         {isLoggedIn ? (
           <>
+          
             <NavLink
               to="/"
               end
@@ -43,9 +50,25 @@ function App() {
             >
               Заказы
             </NavLink>
+            <NavLink
+              to="/map"
+              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
+            >
+             Карта
+            </NavLink>
+           
+            <NavLink
+              to="/wather"
+              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
+            >
+             Погода
+            </NavLink>
             <button onClick={handleLogout} className={styles.navLink}>
               Выйти
             </button>
+
+             <WeatherComponent/>
+            
           </>
         ) : (
           <>
@@ -72,7 +95,7 @@ function App() {
         )}
       </nav>
 
-      <h1>Добро пожаловать в курьерик !!!</h1>
+      {!isLoggedIn && <h1>Добро пожаловать в курьерик !!!</h1>}
 
       <div className={styles.outletContainer}>
         <Outlet />
@@ -83,9 +106,7 @@ function App() {
         <br />
         адрес: г. Уфа, ул. Салавата Юлаева д.90
       </footer>
-      <button onClick={handleLogout}>Выйти</button>
-
-      <button onClick={handleLogin}>Войти</button>
+     
     </div>
   );
 }

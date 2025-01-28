@@ -2,12 +2,10 @@ require('dotenv').config({ path: './.env' });
 const express = require('express');
 const serverConfig = require('./serverConfig');
 const server = express();
-const db = require('./db/models/index')
-
+const db = require('./db/models/index'); 
 
 serverConfig(server);
-
-
+ 
 async function testConnection() {
     try {
     await db.sequelize.authenticate(); 
@@ -18,10 +16,11 @@ async function testConnection() {
     }
     testConnection()
 
-const registrationRouter = require('./routes/RegistrationRout')
+    const registration = require('./routs/RegistrationRout');
+const loginRouter = require('./routs/LoginRout')
 
-
-server.use('/', registrationRouter)
+    server.use('/', registration, loginRouter);
+  
 
 
 server.listen(process.env.PORT || 3000, () => {

@@ -4,7 +4,8 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const { getUser, resLocals } = require('../middleware/getUser');
+
+
 
 const sessionConfig = {
   store: new FileStore(),
@@ -14,6 +15,7 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 12,
+
     httpOnly: true,
   },
 };
@@ -34,8 +36,7 @@ const serverConfig = (server) => {
   server.use(express.static('public'));
   server.use(bodyParser.json());
   server.use(session(sessionConfig));
-  // server.use(getUser);
-  // server.use(resLocals);
+
 };
 
 module.exports = serverConfig;

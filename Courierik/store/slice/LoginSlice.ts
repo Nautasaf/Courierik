@@ -5,8 +5,9 @@ import { loginUser } from '../thunk/LoginThunk'; // если ты создаеш
 const initialState: LoginState = {
   email: '',
   password: '',
- 
- 
+  city: '',
+  error: null,
+  isLoggedIn: false
 };
 
 const LoginSlice = createSlice({
@@ -20,6 +21,10 @@ const LoginSlice = createSlice({
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
+    setCity: (state, action: PayloadAction<string>) => {  
+      state.city = action.payload;
+    },
+   
   
     resetForm: (state) => {
       state.email = '';
@@ -34,7 +39,10 @@ const LoginSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action: PayloadAction<RegisterUserResponse>) => {
         state.error = null; 
-        console.log('Login successful:', action.payload);
+        state.city = action.payload.data.city || 'ничего нет '; 
+        state.isLoggedIn = true;
+      
+       
       })
       .addCase(loginUser.rejected, (state,  action: PayloadAction<RegisterUserError | undefined>) => {
         if (action.payload) {
@@ -47,12 +55,12 @@ const LoginSlice = createSlice({
 });
 
 export const {
-  setUsername,
+ 
   setEmail,
   setPassword,
-  setConfirmPassword,
+ 
   setCity,
-  setError,
+  
   resetForm,
 } = LoginSlice .actions;
 
