@@ -1,10 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setEmail, setPassword } from '../store/slice/LoginSlice'
-import { AppDispatch, RootState } from '../store/Index'
+import { setEmail, setPassword } from '../../store/slice/LoginSlice.ts'
+import { AppDispatch, RootState } from '../../store/index'
 import style from './Login.module.scss'
-import { loginUser } from '../store/thunk/LoginThunk'
+import { loginUser } from '../../store/thunk/LoginThunk'
 
 export const Login: React.FC = () => {
   const { email, password } = useSelector((state: RootState) => state.Login)

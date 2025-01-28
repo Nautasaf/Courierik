@@ -28,13 +28,13 @@ const App: FC = () => {
         handleLogin={handleLogin}
         handleLogout={handleLogout}
       />
-      <Footer />
       <AuthButtons
         isLoggedIn={isLoggedIn}
         handleLogout={handleLogout}
         handleLogin={handleLogin}
       />
       <MainContent />
+      <Footer />
     </>
   )
 }

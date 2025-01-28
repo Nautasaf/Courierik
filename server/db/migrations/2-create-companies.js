@@ -11,19 +11,23 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull:false,
-      },
-      path: {
-        type: Sequelize.STRING,
-        allowNull:false,
+        allowNull: false,
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull:false,
+        allowNull: false,
       },
       logo_url: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      rating: {
         type: Sequelize.STRING,
-        allowNull:false,
+        allowNull: true,
+      },
+      address: {
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

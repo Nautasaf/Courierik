@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Registration } from './components/Registration'
 import { Provider } from 'react-redux'
 import { store } from '../store/index.ts'
-import { Login } from '../components/Login.tsx'
+import { Login } from './components/Login.tsx'
 import { CompaniesList } from './components/CompaniesList/CompaniesList'
 
 const router = createBrowserRouter([
