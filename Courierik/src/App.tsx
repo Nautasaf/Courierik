@@ -4,7 +4,6 @@ import styles from "./App.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/Index";
 import { login, logout } from "../store/slice/AuthSlice";
-import { About } from "../components/About";
 
 function App() {
   const { isLoggedIn } = useSelector((state: RootState) => state.Auth);
