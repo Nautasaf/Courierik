@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/Index';
-import { fetchCompanies } from '../../store/thunk/CompaniesThunk';
-import styles from './CompaniesList.module.scss';
+import { RootState } from '../../../store/index.ts';
+import { fetchCompanies } from '../../../store/thunk/CompaniesThunk';
+import styles from '../CompaniesList/CompaniesList.module.scss';
 
 export const CompaniesList: React.FC = () => {
   const dispatch = useDispatch();

@@ -6,11 +6,11 @@ import {
   setPassword,
   setConfirmPassword,
   setCity,
-} from '../store/slice/RegistrationSlice'
-import type { AppDispatch, RootState } from '../store/Index'
+} from '../../store/slice/RegistrationSlice'
+import type { AppDispatch, RootState } from '../../store/index'
 import style from './Registration.module.scss'
 import React from 'react'
-import { registerUser } from '../store/thunk/RegistrationThunk'
+import { registerUser } from '../../store/thunk/RegistrationThunk'
 
 export const Registration: React.FC = () => {
   const { username, email, password, confirmPassword, city } = useSelector(

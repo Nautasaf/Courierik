@@ -2,7 +2,7 @@
 .appContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 
@@ -31,7 +31,7 @@
 
 .navLinkActive {
  color: #007bff;
- text-decoration: none; 
+ text-decoration: none;
 }
 
 h1 {
@@ -41,7 +41,7 @@ h1 {
 
 
 .outletContainer {
-  flex: 1; 
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
