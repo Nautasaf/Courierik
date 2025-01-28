@@ -3,9 +3,9 @@ import { NavLink, Outlet } from 'react-router-dom';
 import styles from './App.module.scss'; 
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/Index';
-import {  logout } from '../store/slice/AuthSlice'; 
+import {  logout } from '../../client/store/slice/AuthSlice'; 
 import ThemeToggle from '../components/ToggleTheme'; 
-import { WeatherComponent } from '../components/Wather';
+
 
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const{ isLoggedIn  } = useSelector((state: RootState) => state.Auth);
   const dispatch = useDispatch(); 
   
-  console.log("isLoggedIn ",isLoggedIn);
+ 
   
   const handleLogout = () => {
     dispatch(logout());
@@ -44,30 +44,12 @@ function App() {
             >
               Профиль
             </NavLink>
-            <NavLink
-              to="/orders"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
-              Заказы
-            </NavLink>
-            <NavLink
-              to="/map"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
-             Карта
-            </NavLink>
            
-            <NavLink
-              to="/wather"
-              className={({ isActive }) => (isActive ? styles.navLinkActive : styles.navLink)}
-            >
-             Погода
-            </NavLink>
+            
+           
             <button onClick={handleLogout} className={styles.navLink}>
               Выйти
             </button>
-
-             <WeatherComponent/>
             
           </>
         ) : (
@@ -95,7 +77,7 @@ function App() {
         )}
       </nav>
 
-      {!isLoggedIn && <h1>Добро пожаловать в курьерик !!!</h1>}
+      {!isLoggedIn && <h1>Добро пожаловать в пикничОК!!!</h1>}
 
       <div className={styles.outletContainer}>
         <Outlet />
