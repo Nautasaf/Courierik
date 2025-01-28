@@ -24,7 +24,7 @@ export const Login: React.FC = () => {
       const response = await dispatch(loginUser({ email, password }));
       if (loginUser.fulfilled.match(response)) {
         alert('Вход выполнен успешно!');
-        navigate('/'); 
+        navigate('/HeadPage'); 
       } else {
         const errorMessage = response.payload?.message || 'Ошибка входа';
         alert(errorMessage);

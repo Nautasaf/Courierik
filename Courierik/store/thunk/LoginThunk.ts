@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RegisterUserResponse, RegisterUserError } from '../../interface/Registration';
+import { login } from '../slice/AuthSlice';
 
 export const loginUser = createAsyncThunk<
   RegisterUserResponse,
@@ -7,7 +8,7 @@ export const loginUser = createAsyncThunk<
   { rejectValue: RegisterUserError } 
 >(
   'login/loginUser',
-  async (userData, { rejectWithValue }) => {
+  async (userData, {  dispatch, rejectWithValue }) => {
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -22,6 +23,9 @@ export const loginUser = createAsyncThunk<
         return rejectWithValue({ message: errorData?.text || 'Ошибка логина' });
       }
       const data: RegisterUserResponse = await response.json();
+      dispatch(login());  
+     
+      
       return data;
 
     } catch (error) {
@@ -30,3 +34,5 @@ export const loginUser = createAsyncThunk<
     }
   }
 );
+
+

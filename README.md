@@ -1,2 +1,0 @@
-# Courierik
-Our Project

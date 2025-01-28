@@ -1,19 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
+import{AuthState} from '../../interface/Registration'
 
+const savedIsLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+const initialState: AuthState = {
+  isLoggedIn: savedIsLoggedIn,
+  user: null
+};
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    isLoggedIn: false,
-    user: null, 
-  },
+  initialState,
   reducers: {
-    login: (state, action) => {
+    login: (state) => {
       state.isLoggedIn = true;
-      state.user = action.payload; 
+      sessionStorage.setItem('isLoggedIn', 'true');
+     
+     
     },
     logout: (state) => {
       state.isLoggedIn = false;
-      state.user = null;
+      sessionStorage.removeItem('isLoggedIn');
+      
     },
   },
 });
